@@ -1,55 +1,49 @@
-﻿@model IndexViewModel
+﻿@model IList<Price>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "ფასები";
 }
 
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">მთავარი გვერდი</h1>
+        <h1 class="mt-4">ფასები</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                დომენები
-                <a href="/account/addaccount"><i class="fas fa-plus ml-3"></i></a>
+                ფასები
+                <a href="/package/addpackage"><i class="fas fa-plus ml-3"></i></a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>დომენი</th>
-                                <th>კომპანია</th>
+                                <th>ფასი</th>
                                 <th>პაკეტი</th>
-                                <th>პაკეტის აღწერა</th>
                                 <th>ვადა</th>
-                                <th>SSL</th>
                                 <th>მოქმედება</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in @Model.Accounts)
-                            { 
+                            @foreach (var item in @Model)
+                            {
                                 <tr>
-                                    <td>@item.DomainName</td>
-                                    <td>@item.Company.Name</td>
+                                    <td>@item.PriceValue</td>
                                     <td>@item.Package.Name</td>
-                                    <td>@item.Package.Description</td>
-                                    <td>@item.RegisterDate.AddMonths(item.Term.Value)</td>
-                                    <td>@(item.SSLEnabled == 1 ? "ჩართული" : "გამორთული")</td>
+                                    <td>@item.Term.Value</td>
                                     <td class="actions">
-                                        <a class="sb-nav-link-icon" href="/account/editaccount/@item.Id">
+                                        <a class="sb-nav-link-icon" href="/price/editprice/@item.Id">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="/account/deleteaccount/@item.Id" class="sb-nav-link-icon">
+                                        <a href="/price/deleteprice/@item.Id" class="sb-nav-link-icon">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </td>
                                 </tr>
                             }
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>

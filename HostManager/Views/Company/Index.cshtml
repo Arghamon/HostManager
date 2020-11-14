@@ -1,0 +1,56 @@
+﻿@model List<Company>
+@{
+    ViewData["Title"] = "კომპანიები";
+}
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">კომპანიები</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                კომპანიები
+                <a  href="/company/addcompany"><i class="fas fa-plus ml-3"></i></a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>სახელი</th>
+                                <th>ელ-ფოსტა</th>
+                                <th>ტელეფონი</th>
+                                <th>კოდი</th>
+                                <th>საკონტაქტო პირი</th>
+                                <th>მოქმედება</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in @Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Code</td>
+                                    <td>@item.ContactPerson</td>
+                                    <td class="actions">
+                                        <a class="sb-nav-link-icon" href="/company/editcompany/@item.Id">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="/package/deletepackage/@item.Id" class="sb-nav-link-icon">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

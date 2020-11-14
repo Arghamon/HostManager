@@ -1,0 +1,117 @@
+﻿@model AccountViewModel
+@{ 
+    ViewData["Title"] = "დომენის რედაქტირება";
+}
+
+<div id="layoutAuthentication_content">
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header">
+                            <h4 class="text-center font-weight-light">დომენის რედაქტირება</h4>
+                            <span asp-validation-for="@Model.ErrorMessage" class="text-danger"></span>
+                        </div>
+                        <div class="card-body">
+                            <form asp-action="UpdateAccount" method="post">
+                                <input asp-for="@Model.Account.Id" type="hidden" />
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Account.DomainName" class="small mb-1">დომენის სახელი</label>
+                                            <input asp-for="@Model.Account.DomainName" class="form-control py-3" type="text" placeholder="დომენის სახელი" />
+                                            <span asp-validation-for="@Model.Account.DomainName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Account.CompanyId" class="small mb-1">კომპანია</label>
+                                            <select asp-for="@Model.Account.CompanyId" class="form-control">
+                                                <option value="">აირჩიე კომპანია</option>
+                                                @foreach (var item in Model.Companies)
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            <span asp-validation-for="@Model.Account.CompanyId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Account.PackageId" class="small mb-1">პაკეტი</label>
+                                            <select asp-for="@Model.Account.PackageId" class="form-control" id="packageSelector">
+                                                <option value="">აირჩიე პაკეტი</option>
+                                                @foreach (var item in Model.Packages)
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            <span asp-validation-for="@Model.Account.PackageId" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Account.TermId" class="small mb-1">ვადა</label>
+                                            <select asp-for="@Model.Account.TermId" class="form-control" id="termSelector">
+                                                <option value="">აირჩიე ვადა</option>
+                                                @foreach (var item in Model.Terms)
+                                                {
+                                                    <option value="@item.Id">@item.Value</option>
+                                                }
+                                            </select>
+                                            <span asp-validation-for="@Model.Account.TermId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="small mb-1">ფასი</label>
+                                            <input class="form-control py-3" type="text" id="editPriceInput" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Account.SSLPrice" class="small mb-1">SSL მდგომარეობა</label>
+                                            <select asp-for="@Model.Account.SSLEnabled" class="form-control" id="sslCheck">
+                                                <option value="0">გამორთული</option>
+                                                <option value="1">ჩართული</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Account.SSLPrice" class="small mb-1">SSL ფასი</label>
+                                            <input asp-for="@Model.Account.SSLPrice" class="form-control py-3" type="text" id="sslInput" disabled placeholder="SSL ფასი" />
+                                            <span asp-validation-for="@Model.Account.SSLPrice" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group" id="datePicker">
+                                            <label asp-for="@Model.Account.RegisterDate" class="small mb-1">რეგისტრაციის თარიღი</label>
+                                            <input asp-for="@Model.Account.RegisterDate" class="form-control py-3" type="datetime-local" />
+                                            <span asp-validation-for="@Model.Account.RegisterDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-4 mb-0">
+                                    <input type="submit" class="btn btn-primary btn-block" value="რედაქტირება" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

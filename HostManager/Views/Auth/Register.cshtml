@@ -1,6 +1,7 @@
 ﻿@model RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    Layout = "_Layout";
 }
 
 <div id="layoutAuthentication_content">
@@ -9,53 +10,50 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
-                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                        <div class="card-header"><h4 class="text-center font-weight-light my-4">ადმინისტრატორის დამატება</h4></div>
                         <div class="card-body">
-                            <form asp-action="Register">
+                            <form asp-action="Register" method="post">
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label asp-for="Firstname" class="small mb-1" for="inputFirstName">First Name</label>
-                                            <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />
+                                            <label asp-for="Firstname" class="small mb-1" for="inputFirstName">სახელი</label>
+                                            <input asp-for="Firstname" class="form-control py-4" id="inputFirstName" type="text" placeholder="ჩაწერე სახელი" />
                                             <span asp-validation-for="Firstname" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label asp-for="Lastname" class="small mb-1" for="inputLastName">Last Name</label>
-                                            <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
+                                            <label asp-for="Lastname" class="small mb-1" for="inputLastName">გვარი</label>
+                                            <input asp-for="Lastname" class="form-control py-4" id="inputLastName" type="text" placeholder="ჩაწერე გვარი" />
                                             <span asp-validation-for="Lastname" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label  asp-for="Email" class="small mb-1" for="inputEmailAddress">Email</label>
-                                    <input class="form-control py-4" id="inputEmailAddress" type="text" aria-describedby="emailHelp" placeholder="Enter email address" />
+                                    <label asp-for="Email" class="small mb-1" for="inputEmailAddress">ელ-ფოსტა</label>
+                                    <input asp-for="Email" class="form-control py-4" id="inputEmailAddress" type="text" aria-describedby="emailHelp" placeholder="ჩაწერე ელ-ფოსტა" />
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label asp-for="Password" class="small mb-1" for="inputPassword">Password</label>
-                                            <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
+                                            <label asp-for="Password" class="small mb-1" for="inputPassword">პაროლი</label>
+                                            <input asp-for="Password" class="form-control py-4" id="inputPassword" type="password" placeholder="ჩაწერე პაროლი" />
                                             <span asp-validation-for="Password" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label asp-for="ConfirmPassword" class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
-                                            <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />
+                                            <label asp-for="ConfirmPassword" class="small mb-1" for="inputConfirmPassword">პაროლი განმეორებით</label>
+                                            <input asp-for="ConfirmPassword" class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="დაადასტურე პაროლი" />
                                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group mt-4 mb-0">
-                                    <input type="submit" class="btn btn-primary btn-block" value="Create Account"/>
+                                    <input type="submit" class="btn btn-primary btn-block" value="მომხმარებლის შექმნა"/>
                                 </div>
                             </form>
-                        </div>
-                        <div class="card-footer text-center">
-                            <div class="small"><a href="/auth/login">Have an account? Go to login</a></div>
                         </div>
                     </div>
                 </div>

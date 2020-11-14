@@ -1,6 +1,7 @@
 ﻿@model LoginViewModel
 @{
     ViewBag.Title = "Login";
+    Layout = "_AuthLayout";
 }
 
 <div id="layoutAuthentication_content">
@@ -9,26 +10,32 @@
             <div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
-                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                        <div class="card-header">
+                            <h4 class="text-center font-weight-light my-4">შესვლა</h4>
+                            <span asp-validation-for="ErrorMessage" class="text-danger"></span>
+                        </div>
                         <div class="card-body">
-                            <form asp-action="Login">
+                            <form asp-action="Login" method="post">
                                 <div class="form-group">
-                                    <label asp-for="Email" class="small mb-1" for="inputEmailAddress">Email</label>
-                                    <input asp-for="Email" class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Enter email address" />
+                                    <label asp-for="Email" class="small mb-1" for="inputEmailAddress">ელ-ფოსტა</label>
+                                    <input asp-for="Email" class="form-control py-4" id="inputEmailAddress" type="text" placeholder="შეიყვანეთ ელ-ფოსტა" />
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="Password" class="small mb-1" for="inputPassword">Password</label>
-                                    <input asp-for="Password" class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
+                                    <label asp-for="Password" class="small mb-1" for="inputPassword">პაროლი</label>
+                                    <input asp-for="Password" class="form-control py-4" id="inputPassword" type="password" placeholder="შეიყვანეთ პაროლი" />
                                     <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input asp-for="RememberMe" class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
+                                        <label asp-for="RememberMe" class="custom-control-label" for="rememberPasswordCheck">დაიმახსოვრე პაროლი</label>
+                                    </div>
                                 </div>
                                 <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                     <input type="submit" class="btn btn-primary" value="Login" />
                                 </div>
                             </form>
-                        </div>
-                        <div class="card-footer text-center">
-                            <div class="small"><a href="/auth/register">Need an account? Sign up!</a></div>
                         </div>
                     </div>
                 </div>
