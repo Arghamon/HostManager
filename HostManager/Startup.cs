@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HostManager.Configuration;
+using HostManager.Services;
 
 namespace HostManager
 {
@@ -28,6 +29,7 @@ namespace HostManager
             services.AddRazorPages();
             services.AddRepositories();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddHostedService<CronJobService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

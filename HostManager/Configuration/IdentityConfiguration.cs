@@ -2,6 +2,7 @@
 using HostManager.Data;
 using HostManager.Models;
 using HostManager.Repositories;
+using HostManager.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -41,6 +42,8 @@ namespace HostManager.Configuration
             services.AddScoped<IRepository<Term>, TermRepository>();
             services.AddScoped<IPriceRepository, PriceRepository>();
             services.AddScoped<IRepository<Company>, CompanyRepository>();
+            services.AddSingleton<ICheckExpirationService, CheckExpirationService>();
+            services.AddSingleton<IEmailService, EmailService>();
         }
     }
 
