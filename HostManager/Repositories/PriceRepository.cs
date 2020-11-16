@@ -41,12 +41,22 @@ namespace HostManager.Repositories
 
         public bool Delete(int Id)
         {
-            throw new NotImplementedException();
+            var item = _context.Prices.FirstOrDefault(x => x.Id == Id);
+
+            if (item == null)
+                return false;
+
+            _context.Prices.Remove(item);
+            var deleted = _context.SaveChanges();
+
+            return deleted > 0;
         }
 
         public bool Edit(Price Item)
         {
-            throw new NotImplementedException();
+            _context.Prices.Update(Item);
+            var updated = _context.SaveChanges();
+            return updated > 0;
         }
 
         public Price Find(Price Item)
@@ -56,7 +66,7 @@ namespace HostManager.Repositories
 
         public Price FindById(int Id)
         {
-            throw new NotImplementedException();
+            return _context.Prices.FirstOrDefault(x => x.Id == Id);
         }
 
         public Price Get(int Id)

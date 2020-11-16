@@ -44,12 +44,22 @@ namespace HostManager.Repositories
 
         public bool Delete(int Id)
         {
-            throw new NotImplementedException();
+            var item = _context.Companies.FirstOrDefault(x => x.Id == Id);
+
+            if (item == null)
+                return false;
+
+            _context.Companies.Remove(item);
+            var deleted = _context.SaveChanges();
+
+            return deleted > 0;
         }
 
         public bool Edit(Company Item)
         {
-            throw new NotImplementedException();
+            _context.Companies.Update(Item);
+            var updated = _context.SaveChanges();
+            return updated > 0;
         }
 
         public Company Find(Company Item)
@@ -59,7 +69,7 @@ namespace HostManager.Repositories
 
         public Company FindById(int Id)
         {
-            throw new NotImplementedException();
+            return _context.Companies.FirstOrDefault(x => x.Id == Id);
         }
 
         public Company Get(int Id)

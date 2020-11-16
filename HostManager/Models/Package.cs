@@ -8,13 +8,14 @@ namespace HostManager.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "აუცილებელი ველი")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "აუცილებელი ველი")]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "აუცილებელი ველი")]
+        [Range(0, int.MaxValue, ErrorMessage = "მხოლოდ ციფრები")]
         public int Capacity { get; set; }
 
         public IList<Account> Accounts { get; set; }

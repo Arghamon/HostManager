@@ -15,8 +15,9 @@ if (packageSelector) {
     packageSelector.addEventListener("change", invokeListener);
     termSelector.addEventListener("change", invokeListener);
     sslEnabled.addEventListener("change", checkSsl);
-
-    $("input[type='datetime-local']").val(new Date().toDateInputValue())
+    if ($("input[type='datetime-local']").val() == "") {
+        $("input[type='datetime-local']").val(new Date().toDateInputValue())
+    }
     sslInput.disabled = !Boolean(+sslEnabled.value);
 }
 

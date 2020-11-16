@@ -53,7 +53,7 @@ namespace HostManagerMvc.Controllers
                 Terms = _term.GetAll().OrderBy(term => term.Value).ToList(),
             };
 
-            return View(model);
+            return RedirectToAction("Index");
         }
 
         [HttpPost("api/price")]
@@ -61,6 +61,44 @@ namespace HostManagerMvc.Controllers
         {
             double priceValue = _price.GetPriceByTerm(request);
             return Ok(new { Price = priceValue });
+        }
+
+        [HttpGet]
+        public IActionResult EditPrice(int Id)
+        {
+            var price = _price.FindById(Id);
+
+            if (price == null)
+            {
+                return RedirectToAction("Error404", "Error");
+            }
+            var model = new PriceViewModel
+            {
+                Packages = _package.GetAll().ToList(),
+                Terms = _term.GetAll().OrderBy(term => term.Value).ToList(),
+                Price = price
+            };
+          
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePrice(Price price)
+        {
+            bool updated = _price.Edit(price);
+            if (updated)
+            {
+                return RedirectToAction("Index");
+            }
+            return EditPrice(price.Id);
+        }
+
+        [HttpGet]
+        public IActionResult DeletePrice(int Id)
+        {
+            _price.Delete(Id);
+
+            return RedirectToAction("Index");
         }
     }
 }

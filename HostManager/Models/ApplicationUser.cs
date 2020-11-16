@@ -5,9 +5,9 @@ namespace HostManager.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [Required]
+        [Required(ErrorMessage = "აუცილებელი ველი")]
         public string Firstname { get; set; }
-        [Required]
+        [Required(ErrorMessage = "აუცილებელი ველი")]
         public string Lastname { get; set; }
     }
 }

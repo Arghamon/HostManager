@@ -41,7 +41,39 @@ namespace HostManagerMvc.Controllers
                 return View();
             }
             _packageRepo.Add(package);
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditPackage(int Id)
+        {
+            var package = _packageRepo.FindById(Id);
+            if (package == null)
+            {
+                return RedirectToAction("Error404", "Error");
+            }
+            return View(package);
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePackage(Package package)
+        {
+            bool updated = _packageRepo.Edit(package);
+            if (updated)
+            {
+                System.Console.WriteLine(package.Id + " - ID");
+                return RedirectToAction("Index");
+            }
+            System.Console.WriteLine(package.Id + " - ID");
+            return EditPackage(package.Id);
+        }
+
+        [HttpGet]
+        public IActionResult DeletePackage(int Id)
+        {
+            _packageRepo.Delete(Id);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -104,7 +104,7 @@ namespace HostManager.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            return EditAccount(account.Id);
         }
     }
 }

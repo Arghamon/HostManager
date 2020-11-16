@@ -1,6 +1,6 @@
 ﻿@model Package
 
-@{ ViewData["Title"] = "პაკეტის დამატება"; }
+@{ ViewData["Title"] = "პაკეტის რედაქტირება"; }
 
 
 <div id="layoutAuthentication_content">
@@ -9,9 +9,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
-                        <div class="card-header"><h4 class="text-center font-weight-light">პაკეტის დამატება</h4></div>
+                        <div class="card-header"><h4 class="text-center font-weight-light">პაკეტის რედაქტირება</h4></div>
                         <div class="card-body">
-                            <form asp-action="AddPackage" method="post">
+                            <form asp-action="UpdatePackage" method="post">
+                                <input type="hidden" asp-for="Id" />
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label asp-for="Name" class="small mb-1">პაკეტის სახელი</label>
@@ -34,7 +35,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group mt-4 mb-0">
-                                    <input type="submit" class="btn btn-primary btn-block" value="პაკეტის დამატება" />
+                                    <input type="submit" class="btn btn-primary btn-block" value="პაკეტის რედაქტირება" />
                                 </div>
                             </form>
                         </div>

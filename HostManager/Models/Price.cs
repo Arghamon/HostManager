@@ -10,7 +10,10 @@ namespace HostManager.Models
         public int Id { get; set; }
         public int PackageId { get; set; }
         public int TermId { get; set; }
-        public Double PriceValue { get; set; }
+
+        [Required(ErrorMessage = "აუცილებელი ველი")]
+        [Range(0, double.MaxValue, ErrorMessage = "მხოლოდ ციფრები")]
+        public double PriceValue { get; set; }
 
         [ForeignKey("PackageId")]
         public Package Package { get; set; }

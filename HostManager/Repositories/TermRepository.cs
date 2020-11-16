@@ -34,12 +34,22 @@ namespace HostManager.Repositories
 
         public bool Delete(int Id)
         {
-            throw new NotImplementedException();
+            var item = _context.Terms.FirstOrDefault(x => x.Id == Id);
+
+            if (item == null)
+                return false;
+
+            _context.Terms.Remove(item);
+            var deleted = _context.SaveChanges();
+
+            return deleted > 0;
         }
 
         public bool Edit(Term Item)
         {
-            throw new NotImplementedException();
+            _context.Terms.Update(Item);
+            var updated = _context.SaveChanges();
+            return updated > 0;
         }
 
         public Term Find(Term Item)
@@ -49,7 +59,7 @@ namespace HostManager.Repositories
 
         public Term FindById(int Id)
         {
-            throw new NotImplementedException();
+            return _context.Terms.FirstOrDefault(x => x.Id == Id);
         }
 
         public Term Get(int Id)

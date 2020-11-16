@@ -40,12 +40,22 @@ namespace HostManager.Repositories
 
         public bool Delete(int Id)
         {
-            throw new NotImplementedException();
+            var item = _context.Packages.FirstOrDefault(x => x.Id == Id);
+
+            if (item == null)
+                return false;
+
+            _context.Packages.Remove(item);
+            var deleted = _context.SaveChanges();
+
+            return deleted > 0;
         }
 
         public bool Edit(Package Item)
         {
-            throw new NotImplementedException();
+            _context.Packages.Update(Item);
+            var updated = _context.SaveChanges();
+            return updated > 0;
         }
 
         public Package Find(Package Item)
@@ -55,7 +65,7 @@ namespace HostManager.Repositories
 
         public Package FindById(int Id)
         {
-            throw new NotImplementedException();
+            return _context.Packages.FirstOrDefault(x => x.Id == Id);
         }
 
         public Package Get(int Id)

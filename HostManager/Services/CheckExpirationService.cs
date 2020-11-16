@@ -24,7 +24,7 @@ namespace HostManager.Services
             {
                 var account = scope.ServiceProvider.GetRequiredService<IRepository<Account>>();
                 var accounts = account.GetAll().ToList();
-                accounts = accounts.Where(a => a.RegisterDate.AddDays(a.Term.Value)
+                accounts = accounts.Where(a => a.RegisterDate.AddMonths(a.Term.Value)
                     .Subtract(DateTime.Now).TotalHours <= 25)
                     .ToList();
 
@@ -32,7 +32,7 @@ namespace HostManager.Services
                 {
                     var body = CreateBody(accounts);
                     Console.WriteLine("Sending Email...");
-                    await _email.SendMailAsync("ioanelomidze@gmail.com", "დომენები", body);
+                    await _email.SendMailAsync("gogashonia@gmail.com", "დომენები", body);
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace HostManager.Services
             {
                 var _price = scope.ServiceProvider.GetRequiredService<IPriceRepository>();
 
-                string body = "<table><thead><th>დომენი</th><th>ფასი</th><th>თარიღი</th></thead> <tbody>";
+                string body = "<h1>ვადა გასდის/გაუვიდა</h1><table><thead><th>დომენი</th><th>ფასი</th><th>ვადის გასვლის თარიღი</th></thead> <tbody>";
 
                 foreach (var item in accounts)
                 {
@@ -53,7 +53,7 @@ namespace HostManager.Services
                         TermId = item.TermId,
                     });
                     body += $"<tr><td>{item.DomainName}</td>" +
-                        $"<td>{price}</td>" +
+                        $"<td>{price} ლარი</td>" +
                         $"<td>{item.RegisterDate.AddMonths(item.Term.Value).ToString("dd-MM-yyyy")}</td></tr>";
                 }
 

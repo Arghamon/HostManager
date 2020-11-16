@@ -1,0 +1,38 @@
+﻿@model Term
+@{ ViewData["Title"] = "ვადის რედაქტირება"; }
+
+<div id="layoutAuthentication_content">
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header"><h4 class="text-center font-weight-light">ვადის რედაქტირება</h4></div>
+                        <div class="card-body">
+                            <form asp-action="UpdateTerm" method="post">
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Value" class="small mb-1">ვადა</label>
+                                            <input asp-for="@Model.Value" class="form-control py-3" type="text" placeholder="ჩაწერე ვადა" />
+                                            <span asp-validation-for="@Model.Value" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-4 mb-0">
+                                    <input type="submit" class="btn btn-primary btn-block" value="ვადის რედაქტირება" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
