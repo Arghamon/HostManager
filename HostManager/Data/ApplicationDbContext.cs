@@ -19,14 +19,13 @@ namespace HostManager.Data
         public DbSet<Package> Packages { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<Term> Terms { get; set; }
-
-/*        protected override void OnModelCreating(ModelBuilder builder)
+/*
+        #region Model Creating
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<Account>().HasIndex(account => account.DomainName);
-            builder.Entity<Company>().HasIndex(company => company.Name).IsUnique();
-                *//*.IsUnique();
-            builder.Entity<Package>().HasIndex(package => package.Name).IsUnique();
-            builder.Entity<Term>().HasIndex(term => term.Value).IsUnique();*//*
-        }*/
+            Console.WriteLine("on model creating");
+        }
+        #endregion*/
+
     }
 }

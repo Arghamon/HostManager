@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HostManager.Configuration;
 using HostManager.Services;
+using HostManager.Contracts;
 
 namespace HostManager
 {
@@ -34,7 +35,11 @@ namespace HostManager
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env,
+            IIdentitySeederService identitySeeder
+            )
         {
         app.UseForwardedHeaders(new ForwardedHeadersOptions
 	{
@@ -62,7 +67,7 @@ namespace HostManager
             app.UseAuthentication();
             app.UseAuthorization();
 
-
+            identitySeeder.Seed();
 
             app.UseEndpoints(endpoints =>
             {

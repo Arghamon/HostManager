@@ -32,6 +32,8 @@ namespace HostManager.Configuration
                 options.LogoutPath = $"/Auth/Logout";
                 options.AccessDeniedPath = $"/Auth/AccessDenied";
             });
+
+            services.AddScoped<IIdentitySeederService, IdentitySeederService>();
         }
 
         public static void AddRepositories(this IServiceCollection services)
