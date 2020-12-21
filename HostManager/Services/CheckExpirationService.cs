@@ -53,7 +53,7 @@ namespace HostManager.Services
                     mail.AddParameters("{body}", body);
                     var mailContent = await mail.GenerateBody();
                     Console.WriteLine("Sending Email...");
-                    //await _email.SendMailAsync("ioanelomidze@gmail.com", "დომენები", mailContent, null);
+                    await _email.SendMailAsync("ioanelomidze@gmail.com", "დომენები", mailContent, null);
 
                     foreach (var item in accounts)
                     {
@@ -62,7 +62,7 @@ namespace HostManager.Services
 
                         DocumentBuilder.CreatePdf(outputHtmlPath, outputPdfPath);
 
-                        // await _email.SendMailAsync(item.Company.Email, "არტმედია", "დომენის საფასურის გადახდის ინვოისი", outputPdfPath);
+                        await _email.SendMailAsync(item.Company.Email, "არტმედია", "დომენის საფასურის გადახდის ინვოისი", outputPdfPath);
                     }
                 }
             }

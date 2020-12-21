@@ -37,6 +37,13 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label asp-for="Address" class="small mb-1">მისამართი</label>
+                                        <input asp-for="Address" class="form-control py-3" type="text" placeholder="ჩაწერე მისამართი" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label asp-for="Code" class="small mb-1">რაღაც კოდი</label>
                                         <input asp-for="Code" class="form-control py-3" type="text" placeholder="ჩაწერე კოდი" />
                                         <span asp-validation-for="Code" class="text-danger"></span>

@@ -34,7 +34,7 @@ namespace HostManager.Controllers
 
         public async Task<IActionResult> Privacy()
         {
-            await _check.CheckExpiration();
+            //await _check.CheckExpiration();
             return View();
         }
     }

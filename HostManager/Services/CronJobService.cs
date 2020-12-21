@@ -15,7 +15,7 @@ namespace HostManager.Services
         private readonly ICheckExpirationService _check;
         private CrontabSchedule _schedule;
         private DateTime _nextRun;
-        private string Schedule => "47 16 * * * ";
+        private string Schedule => "15 20 * * * ";
 
         public CronJobService(ICheckExpirationService check)
         {
