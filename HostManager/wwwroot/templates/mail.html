@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+</head>
+<body>
+
+    <h2>ვადა გასდის შემდეგ დომენებს</h2>
+    <p>Resize the browser window to see the effect. Try to remove the div element and see what happens to the table.</p>
+    <!--"<h1>ვადა გასდის/გაუვიდა</h1><table><thead><th>დომენი</th><th>ფასი</th><th>ვადის გასვლის თარიღი</th></thead> <tbody>";-->
+    <div style="overflow-x:auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>დომენი</th>
+                    <th>ფასი</th>
+                    <th>ვადის გასვლის თარიღი</th>
+                </tr>
+            </thead>
+            <tbody>
+                {body}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
