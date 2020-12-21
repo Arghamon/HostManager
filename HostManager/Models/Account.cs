@@ -27,6 +27,9 @@ namespace HostManager.Models
         [Required(ErrorMessage = "არასწორი ფორმატი")]
         public DateTime RegisterDate { get; set; } = DateTime.Now;
 
+        [Required(ErrorMessage = "არასწორი ფორმატი")]
+        public DateTime PayDate { get; set; } = DateTime.Now;
+
         [Required(ErrorMessage = "აირჩიე კომპანია")]
         public int CompanyId { get; set; }
 

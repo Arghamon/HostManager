@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using HostManager.Enums;
 
 namespace HostManager.Models
 {
@@ -18,5 +19,12 @@ namespace HostManager.Models
         public string Code { get; set; }
         [Required(ErrorMessage = "აუცილებელი ველი")]
         public string ContactPerson { get; set; }
+
+        [Required(ErrorMessage = "აუცილებელი ველი")]
+        public string Address { get; set; }
+
+        [Required(ErrorMessage = "აუცილებელი ველი")]
+        [EnumDataType(typeof(InvoiceTemplate))]
+        public InvoiceTemplate InvoiceTemplate { get; set; }
     }
 }

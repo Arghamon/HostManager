@@ -39,6 +39,9 @@ namespace HostManager.Migrations
                     b.Property<int>("PackageId")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("PayDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("timestamp without time zone");
 
@@ -69,6 +72,10 @@ namespace HostManager.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("text");
@@ -80,6 +87,9 @@ namespace HostManager.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("InvoiceTemplate")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -94,6 +104,27 @@ namespace HostManager.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("HostManager.Models.Invoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ExpireDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Invoices");
+                });
+
             modelBuilder.Entity("HostManager.Models.Package", b =>
                 {
                     b.Property<int>("Id")
@@ -101,8 +132,7 @@ namespace HostManager.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("Capacity")
-                        .IsRequired()
+                    b.Property<int>("Capacity")
                         .HasColumnType("integer");
 
                     b.Property<string>("Description")

@@ -19,13 +19,7 @@ namespace HostManager.Data
         public DbSet<Package> Packages { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<Term> Terms { get; set; }
-/*
-        #region Model Creating
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            Console.WriteLine("on model creating");
-        }
-        #endregion*/
+        public DbSet<Invoice> Invoices { get; set; }
 
     }
 }

@@ -4,11 +4,11 @@ using HostManager.Settings;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MailKit.Net.Smtp;
-using MailKit;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace HostManager.Services
 {
@@ -16,26 +16,48 @@ namespace HostManager.Services
     {
         private readonly IConfiguration _config;
         private readonly SmtpSettings smtpSettings;
-        public EmailService(IConfiguration configuration)
+        private readonly IWebHostEnvironment _env;
+        public EmailService(IConfiguration configuration, IWebHostEnvironment env)
         {
             _config = configuration;
             smtpSettings = new SmtpSettings();
             _config.GetSection(nameof(SmtpSettings)).Bind(smtpSettings);
+            _env = env;
         }
-        public async Task SendMailAsync(string email, string subject, string body)
+        public async Task SendMailAsync(string email, string subject, string body, string path)
         {
             try
             {
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress(smtpSettings.SenderName, smtpSettings.SenderEmail));
-                message.To.Add(new MailboxAddress("Ioane", email));
+                message.To.Add(new MailboxAddress(email, email));
                 message.Subject = subject;
-                message.Body = new TextPart("html")
+                var multipart = new Multipart("mixed");
+                var streams = new List<Stream>();
+
+                if(path != null) {
+                    var stream = File.OpenRead(path);
+                    var attachment = new MimePart(MimeTypes.GetMimeType(path))
+                    {
+                        Content = new MimeContent(stream),
+                        ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                        ContentTransferEncoding = ContentEncoding.Base64,
+                        FileName = Path.GetFileName(path)
+                    };
+                    multipart.Add(attachment);
+                    streams.Add(stream);
+                }
+
+
+                var html = new TextPart("html")
                 {
                     Text = body,
                 };
 
-                using(var client = new SmtpClient())
+                multipart.Add(html);
+                message.Body = multipart;
+
+                using (var client = new SmtpClient())
                 {
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                     client.CheckCertificateRevocation = false;
@@ -46,6 +68,10 @@ namespace HostManager.Services
                 }
 
                 Console.WriteLine("Email sent");
+                foreach (var stream in streams)
+                {
+                    stream.Dispose();
+                }
             }
             catch(Exception e)
             {

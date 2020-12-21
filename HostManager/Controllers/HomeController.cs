@@ -5,21 +5,24 @@ using HostManager.Contracts;
 using HostManager.Models;
 using HostManager.ViewModels;
 using System.Linq;
+using System.Threading.Tasks;
+using HostManager.Services;
 
 namespace HostManager.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IRepository<Account> _account;
+        private readonly ICheckExpirationService _check;
 
-        public HomeController(ILogger<HomeController> logger, IRepository<Account> account)
+        public HomeController(IRepository<Account> account, ICheckExpirationService check)
         {
-            _logger = logger;
             _account = account;
+            _check = check;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             IndexViewModel _model = new IndexViewModel()
@@ -29,8 +32,9 @@ namespace HostManager.Controllers
             return View(_model);
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
+            //await _check.CheckExpiration();
             return View();
         }
     }
