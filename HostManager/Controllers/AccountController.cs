@@ -81,7 +81,7 @@ namespace HostManager.Controllers
         [HttpGet]
         public IActionResult EditAccount(int Id)
         {
-            var account = _accountRepo.FindById(Id);
+            var account = _accountRepo.Get(Id);
             if(account == null)
             {
                 return RedirectToAction("Error404", "Error");

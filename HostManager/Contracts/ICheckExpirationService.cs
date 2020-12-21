@@ -7,6 +7,6 @@ namespace HostManager.Contracts
 {
     public interface ICheckExpirationService
     {
-        public void CheckExpiration();
+        public Task CheckExpiration();
     }
 }

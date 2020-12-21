@@ -15,7 +15,7 @@ namespace HostManager.Services
         private readonly ICheckExpirationService _check;
         private CrontabSchedule _schedule;
         private DateTime _nextRun;
-        private string Schedule => "48 15 * * * ";
+        private string Schedule => "47 16 * * * ";
 
         public CronJobService(ICheckExpirationService check)
         {
@@ -32,7 +32,7 @@ namespace HostManager.Services
                 var now = DateTime.Now;
                 if (now > _nextRun)
                 {
-                    _check.CheckExpiration();
+                   await _check.CheckExpiration();
                     _nextRun = _schedule.GetNextOccurrence(DateTime.Now);
                 }
                 await Task.Delay(5000, stoppingToken); //5 seconds delay

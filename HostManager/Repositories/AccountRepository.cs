@@ -82,7 +82,9 @@ namespace HostManager.Repositories
 
         public Account FindById(int Id)
         {
-            return _context.Accounts.FirstOrDefault(x => x.Id == Id);
+            return _context.Accounts
+                .Include(account => account.Term)
+                .FirstOrDefault(x => x.CompanyId == Id);
         }
     }
 }

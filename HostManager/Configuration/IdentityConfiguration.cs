@@ -42,6 +42,7 @@ namespace HostManager.Configuration
             services.AddScoped<IRepository<Account>, AccountRepository>();
             services.AddScoped<IRepository<Package>, PackageRepository>();
             services.AddScoped<IRepository<Term>, TermRepository>();
+            services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<IPriceRepository, PriceRepository>();
             services.AddScoped<IRepository<Company>, CompanyRepository>();
             services.AddSingleton<ICheckExpirationService, CheckExpirationService>();

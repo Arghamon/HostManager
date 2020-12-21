@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Invoice</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		* {
+			font-family: DejaVu Sans !important;
+		}
+
+		#page-wrap {
+			width: 700px;
+			margin: 0 auto;
+			padding: 30px;
+			font-size: 16px;
+			line-height: 24px;
+			color: #555;
+		}
+
+		.center-justified {
+			text-align: justify;
+			margin: 0 auto;
+			width: 30em;
+		}
+
+		table.outline-table {
+			border-spacing: 0;
+		}
+
+		table tr td {
+			padding: 5px;
+		}
+
+		tr.border-bottom td, td.border-bottom {
+			background: #eee;
+			border-bottom: 1px solid #ddd;
+		}
+
+		tr.border-top td, td.border-top {
+			border-top: 1px solid;
+		}
+
+		tr.border-right td, td.border-right {
+			border-right: 1px solid;
+		}
+
+			tr.border-right td:last-child {
+				border-right: 0px;
+			}
+
+		tr.center td, td.center {
+			text-align: center;
+			vertical-align: text-top;
+		}
+
+		td.pad-left {
+			padding-left: 5px;
+		}
+
+		tr.right-center td, td.right-center {
+			text-align: right;
+			padding-right: 10px;
+		}
+
+		tr.right td, td.right {
+			text-align: right;
+		}
+
+		.grey {
+			background: #eee;
+			border-bottom: 1px solid #ddd;
+			font-weight: bold;
+		}
+
+		span {
+			display: block;
+		}
+
+			span.title {
+				margin-bottom: 10px;
+				font-size: 18px;
+				font-weight: 600;
+			}
+
+			span.sub-title {
+				font-size: 16px;
+				font-weight: 600;
+			}
+	</style>
+</head>
+<body>
+	<div id="page-wrap">
+		<table width="100%">
+			<tbody>
+				<tr>
+					<td width="60%"><img width="200" src="../img/logo.png"></td>
+					<td width="40%" style="line-height: 1.4;">
+						<span class="title">ინვოისი</span>
+						<span>ინვოისი #: {invoiceId} </span>
+						<span>შექმნის თარიღი: {createDate}</span>
+						<span>ბოლო ვადა: {expireDate}</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p style="margin: 1px;">&nbsp;</p>
+		<table width="100%">
+			<tbody>
+				<tr>
+					<td width="50%" style="line-height: 1.4;">
+						<span class="sub-title">მიმწოდებელი</span>
+						<span>Artmedia</span>
+						<span>მის: Nikoladze 7</span>
+						<span>საიდენტიფიკაიო კოდი: 0101</span>
+						<span>ანგარიშის ნომერი: GE123bsa123123</span>
+					</td>
+					<td width="50%" style="text-align: right; line-height: 1.4;">
+						<span class="sub-title">მიმღები</span>
+						<span>{name}</span>
+						<span>საიდენტიფიკაიო კოდი: {code}</span>
+						<span>მის: {address}</span>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>&nbsp;</p>
+		<table width="100%">
+			<tbody>
+				<tr class="border-bottom grey">
+					<td>მომსახურების აღწერა</td>
+					<td colspan="2">ხარჯი</td>
+				</tr>
+				<tr>
+					<td class="pad-left">{domain} ჰოსტინგის მიწოდება</td>
+					<td colspan="2">{price}₾</td>
+				</tr>
+
+				<tr>
+					<td colspan="3" class="right-center"><strong>საფასური (ლარებში)</strong>: {price} ლარი</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>&nbsp;</p>
+		<table width="100%" class="outline-table">
+			<tbody>
+				<tr>
+					<td width="50%" style="line-height: 1.4;">
+						<span>ხელმომწერი: ნიკა ხორავა</span>
+					</td>
+					<td align="right" style="padding-right:100px;"><img /></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
