@@ -27,7 +27,9 @@ namespace HostManager.Controllers
         {
             IndexViewModel _model = new IndexViewModel()
             {
-                Accounts = _account.GetAll().ToList(),
+                Accounts = _account.GetAll()
+                .OrderBy(x => x.PayDate.AddMonths(x.Term.Value))
+                .ToList(),
             };
             return View(_model);
         }

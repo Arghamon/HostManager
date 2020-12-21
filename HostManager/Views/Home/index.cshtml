@@ -37,7 +37,7 @@
                                     <td>@item.Company.Name</td>
                                     <td>@item.Package.Name</td>
                                     <td>@item.Package.Description</td>
-                                    <td>@item.RegisterDate.AddMonths(item.Term.Value)</td>
+                                    <td>@item.PayDate.AddMonths(item.Term.Value)</td>
                                     <td>@(item.SSLEnabled == 1 ? "ჩართული" : "გამორთული")</td>
                                     <td class="actions">
                                         <a class="sb-nav-link-icon" href="/account/editaccount/@item.Id">
