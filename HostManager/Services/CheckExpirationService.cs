@@ -53,7 +53,7 @@ namespace HostManager.Services
                     mail.AddParameters("{body}", body);
                     var mailContent = await mail.GenerateBody();
                     Console.WriteLine("Sending Email...");
-                    await _email.SendMailAsync("ioanelomidze@gmail.com", "დომენები", mailContent, null);
+                    await _email.SendMailAsync("welcome@artmedia.ge", "დომენები", mailContent, null);
 
                     foreach (var item in accounts)
                     {

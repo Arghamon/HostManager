@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using SautinSoft.Document;
-using SelectPdf;
+﻿using SelectPdf;
 
 namespace HostManager.Services
 {
@@ -18,14 +15,7 @@ namespace HostManager.Services
 
         public static string CreateDoc(string filePath)
         {
-            var name = Guid.NewGuid();
-            var output = $@"./wwwroot/docs/{name}-invoice.docx";
-            var input = filePath;
-            DocumentCore document = DocumentCore.Load(input);
-            
-            document.Save(output);
-
-            return output;
+            return filePath;
         }
     }
 }

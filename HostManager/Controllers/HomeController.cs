@@ -34,10 +34,10 @@ namespace HostManager.Controllers
             return View(_model);
         }
 
-        public async Task<IActionResult> Privacy()
-        {
-            //await _check.CheckExpiration();
-            return View();
-        }
+        //public async Task<IActionResult> Privacy()
+        //{
+        //    //await _check.CheckExpiration();
+        //    return View();
+        //}
     }
 }
