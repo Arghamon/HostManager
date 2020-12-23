@@ -19,18 +19,9 @@ namespace HostManager.Repositories
 
         public bool Add(Company company)
         {
-            var item = new Company
-            {
-                Code = company.Code,
-                ContactPerson = company.ContactPerson,
-                Email = company.Email,
-                Name = company.Name,
-                Phone = company.Phone,
-            };
-
             try
             {
-                _context.Companies.Add(item);
+                _context.Companies.Add(company);
                 var updated = _context.SaveChanges();
 
                 return updated > 0;
