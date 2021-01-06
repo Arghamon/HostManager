@@ -76,7 +76,7 @@ namespace HostManager.Repositories
 
         public IEnumerable<Package> GetAll()
         {
-            return _context.Packages.ToList();
+            return _context.Packages.OrderByDescending(x => x.Id).ToList();
         }
     }
 }

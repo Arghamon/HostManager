@@ -14,3 +14,23 @@
     display: flex;
     justify-content: space-around;
 }
+
+.card-header {
+    display: flex;
+    align-items: center;
+}
+
+.card-header a {
+    padding: 5px 10px;
+    display: inline-flex;
+    background: #c1c1c1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    text-decoration: 0;
+    margin-left: auto;
+}
+
+.card-header a svg {
+    padding-left: 0 !important;
+}
