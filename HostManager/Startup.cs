@@ -45,10 +45,11 @@ namespace HostManager
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+            
+            app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
