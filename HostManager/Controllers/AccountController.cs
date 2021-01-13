@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
-using HostManager.Contracts;
+﻿using HostManager.Contracts;
 using HostManager.Models;
 using HostManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace HostManager.Controllers
 {
-    
-    [Authorize] 
+
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly IRepository<Account> _accountRepo;
@@ -42,7 +41,7 @@ namespace HostManager.Controllers
         public IActionResult AddAccount(Account account)
         {
             var existed = _accountRepo.Find(account);
-            if(existed != null)
+            if (existed != null)
             {
                 ModelState.AddModelError("ErrorMessage", "დომენი უკვე არსებობს");
                 return AddAccount();
@@ -82,7 +81,7 @@ namespace HostManager.Controllers
         public IActionResult EditAccount(int Id)
         {
             var account = _accountRepo.Get(Id);
-            if(account == null)
+            if (account == null)
             {
                 return RedirectToAction("Error404", "Error");
             }
@@ -96,11 +95,11 @@ namespace HostManager.Controllers
             return View(_model);
         }
 
-        [HttpPost] 
+        [HttpPost]
         public IActionResult UpdateAccount(Account account)
         {
             bool updated = _accountRepo.Edit(account);
-            if(updated)
+            if (updated)
             {
                 return RedirectToAction("Index", "Home");
             }

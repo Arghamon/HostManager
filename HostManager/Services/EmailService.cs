@@ -1,14 +1,13 @@
 ﻿using HostManager.Contracts;
-using HostManager.Models;
 using HostManager.Settings;
+using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
-using MailKit.Net.Smtp;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace HostManager.Services
 {
@@ -35,7 +34,8 @@ namespace HostManager.Services
                 var multipart = new Multipart("mixed");
                 var streams = new List<Stream>();
 
-                if(path != null) {
+                if (path != null)
+                {
                     var stream = File.OpenRead(path);
                     var attachment = new MimePart(MimeTypes.GetMimeType(path))
                     {
@@ -73,7 +73,7 @@ namespace HostManager.Services
                     stream.Dispose();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine($"Email was not send {e.Message}");
             }

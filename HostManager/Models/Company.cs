@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using HostManager.Enums;
+﻿using HostManager.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace HostManager.Models
 {

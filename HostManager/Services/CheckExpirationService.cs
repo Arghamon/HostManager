@@ -3,8 +3,8 @@ using HostManager.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,7 +30,7 @@ namespace HostManager.Services
             {
                 return;
             }
-            
+
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 var account = scope.ServiceProvider.GetRequiredService<IRepository<Account>>();
@@ -48,7 +48,7 @@ namespace HostManager.Services
 
 
                     HtmlStringGenerator mail = new HtmlStringGenerator(mailPath);
-                    
+
 
                     mail.AddParameters("{body}", body);
                     var mailContent = await mail.GenerateBody();
@@ -74,11 +74,11 @@ namespace HostManager.Services
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 var _price = scope.ServiceProvider.GetRequiredService<IPriceRepository>();
-                    var price = _price.GetPriceByTerm(new PriceRequest
-                    {
-                        PackageId = packageId,
-                        TermId = termId,
-                    });
+                var price = _price.GetPriceByTerm(new PriceRequest
+                {
+                    PackageId = packageId,
+                    TermId = termId,
+                });
 
                 return price;
             }
@@ -91,10 +91,10 @@ namespace HostManager.Services
                 var invoice = scope.ServiceProvider.GetRequiredService<IInvoiceRepository>();
                 var account = scope.ServiceProvider.GetRequiredService<IRepository<Account>>();
                 var companyAccount = account.FindById(companyId);
-                
+
 
                 var existed = invoice.FindByCompany(companyId, companyAccount.PayDate.AddMonths(companyAccount.Term.Value));
-                if(existed == null)
+                if (existed == null)
                 {
                     return null;
                 }
@@ -106,7 +106,7 @@ namespace HostManager.Services
                 }
 
                 return existed.Path;
-                
+
             }
         }
 
@@ -115,7 +115,7 @@ namespace HostManager.Services
             string body = "";
             foreach (var item in accounts)
             {
-            var price = GetPrice(item.PackageId, item.TermId);
+                var price = GetPrice(item.PackageId, item.TermId);
                 body += $"<tr><td>{item.DomainName}</td>" +
                         $"<td>{price} ლარი</td>" +
                         $"<td>{item.PayDate.AddMonths(item.Term.Value).ToString("dd-MM-yyyy")}</td></tr>";
@@ -129,7 +129,7 @@ namespace HostManager.Services
 
             var existedInvoicePath = CheckInvoice(item.CompanyId);
 
-            if(existedInvoicePath != null)
+            if (existedInvoicePath != null)
             {
                 return existedInvoicePath;
             }
@@ -150,7 +150,7 @@ namespace HostManager.Services
             }
 
 
-                var invoicePath = _env.WebRootPath + $"/templates/{item.Company.InvoiceTemplate}.html";
+            var invoicePath = _env.WebRootPath + $"/templates/{item.Company.InvoiceTemplate}.html";
             var outputPdfPath = _env.WebRootPath + $"/docs/{id}-invoice.pdf";
 
             HtmlStringGenerator invoiceHtml = new HtmlStringGenerator(invoicePath);

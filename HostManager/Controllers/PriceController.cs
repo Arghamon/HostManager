@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using HostManager.Contracts;
+﻿using HostManager.Contracts;
 using HostManager.Models;
 using HostManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace HostManagerMvc.Controllers
 {
@@ -78,7 +78,7 @@ namespace HostManagerMvc.Controllers
                 Terms = _term.GetAll().OrderBy(term => term.Value).ToList(),
                 Price = price
             };
-          
+
             return View(model);
         }
 

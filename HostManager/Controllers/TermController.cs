@@ -35,7 +35,7 @@ namespace HostManagerMvc.Controllers
         {
             var existed = _term.Find(term);
 
-            if(existed != null)
+            if (existed != null)
             {
                 ModelState.AddModelError("Value", $"{term.Value} უკვე არსებობს");
                 return View();

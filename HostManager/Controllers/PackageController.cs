@@ -36,7 +36,7 @@ namespace HostManagerMvc.Controllers
         public IActionResult AddPackage(Package package)
         {
             var existed = _packageRepo.Find(package);
-            if(existed != null)
+            if (existed != null)
             {
                 ModelState.AddModelError("Name", $"{package.Name} უკვე არსებობს");
                 return View();

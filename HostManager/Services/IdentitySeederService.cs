@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
+﻿using HostManager.Contracts;
 using HostManager.Models;
-using HostManager.Contracts;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace HostManager.Services
 {
@@ -18,7 +18,7 @@ namespace HostManager.Services
         public async Task Seed()
         {
             var existed = await _userManager.FindByEmailAsync("welcome@artmedia.ge");
-            
+
             if (existed != null)
                 return;
 

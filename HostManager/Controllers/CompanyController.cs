@@ -38,13 +38,13 @@ namespace HostManager.Controllers
                 return View();
             }
             var existed = _company.Find(company);
-           
-            if(existed != null)
+
+            if (existed != null)
             {
                 ModelState.AddModelError("Name", $"კომპანია {company.Name} არსებობს");
                 return View();
             }
-            
+
             var result = _company.Add(company);
             if (!result)
             {

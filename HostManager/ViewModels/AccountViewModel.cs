@@ -11,6 +11,6 @@ namespace HostManager.ViewModels
         public List<Company> Companies { get; set; }
         public Price Price { get; set; }
         public string ErrorMessage { get; set; }
-        
+
     }
 }

@@ -6,7 +6,7 @@ namespace HostManager.ViewModels
     public class LoginViewModel
     {
         [Required(ErrorMessage = "აუცილებელი ველი")]
-        [EmailAddress(ErrorMessage = "ფორმატი არასწორია" )]
+        [EmailAddress(ErrorMessage = "ფორმატი არასწორია")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "აუცილებელი ველი")]

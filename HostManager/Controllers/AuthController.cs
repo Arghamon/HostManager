@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
-using HostManager.Contracts;
+﻿using HostManager.Contracts;
 using HostManager.Models;
 using HostManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace HostManager.Controllers
 {
@@ -17,7 +17,7 @@ namespace HostManager.Controllers
         private static string _returnUrl { get; set; }
 
         public AuthController(
-            ILogger<AuthController> logger, 
+            ILogger<AuthController> logger,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IAuthRepository auth
@@ -52,17 +52,17 @@ namespace HostManager.Controllers
         {
             if (!ModelState.IsValid)
                 return View();
-            
+
             var result = await _auth.LoginAsync(model);
 
-            if(!result)
+            if (!result)
             {
                 _logger.LogError($"{model.Email} not found");
                 ModelState.AddModelError("ErrorMessage", "პაროლი/ელ-ფოსტა არასწორია");
 
                 return View();
             }
-           
+
             if (_returnUrl != null)
             {
                 return Redirect(_returnUrl);
@@ -92,9 +92,10 @@ namespace HostManager.Controllers
             {
                 _logger.LogInformation("Registration was succesfull");
                 return RedirectToAction("Index", "Home");
-            }else
+            }
+            else
             {
-                foreach(var error in result.Errors)
+                foreach (var error in result.Errors)
                 {
                     _logger.LogError($"Registration Failed - {error.Description}, ");
                     ModelState.TryAddModelError("Email", error.Description);

@@ -14,7 +14,8 @@ namespace HostManager.Configuration
         public static void AddIdentityConfiguration(this IServiceCollection services)
         {
             services
-                .AddIdentity<ApplicationUser, IdentityRole>(options => {
+                .AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
                     options.Password.RequireDigit = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequiredUniqueChars = 0;
@@ -50,5 +51,5 @@ namespace HostManager.Configuration
         }
     }
 
-    
+
 }

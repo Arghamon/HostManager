@@ -1,10 +1,7 @@
 ﻿using HostManager.Contracts;
-using HostManager.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NCrontab;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,7 +29,7 @@ namespace HostManager.Services
                 var now = DateTime.Now;
                 if (now > _nextRun)
                 {
-                   await _check.CheckExpiration();
+                    await _check.CheckExpiration();
                     _nextRun = _schedule.GetNextOccurrence(DateTime.Now);
                 }
                 await Task.Delay(5000, stoppingToken); //5 seconds delay

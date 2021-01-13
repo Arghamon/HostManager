@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authorization;
-using HostManager.Contracts;
+﻿using HostManager.Contracts;
 using HostManager.Models;
 using HostManager.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
-using HostManager.Services;
 
 namespace HostManager.Controllers
 {
-    
+
     public class HomeController : Controller
     {
         private readonly IRepository<Account> _account;
