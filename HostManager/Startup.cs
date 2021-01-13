@@ -45,20 +45,19 @@ namespace HostManager
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
-            
-            app.UseDeveloperExceptionPage();
-            app.UseDatabaseErrorPage();
             if (env.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
-                //app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
 
             app.UseStaticFiles();
-            //app.UseStatusCodePagesWithRedirects("/Error/{0}");
+            app.UseStatusCodePagesWithRedirects("/Error/{0}");
             app.UseHttpsRedirection();
 
             app.UseRouting();
